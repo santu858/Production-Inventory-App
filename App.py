@@ -5,13 +5,16 @@ import time
 
 # MySQL connection
 conn = mysql.connector.connect(
-    host="localhost",
+    host="autorack.proxy.rlwy.net",
     user="root",
-    password="8272",
-    database="factory_db"
+    password="nmdmuwqNTEPwgrhBsWKShirIbToLflrU",
+    database="railway",
+    port=12064
 )
 
+
 cursor = conn.cursor()
+
 menu = ("Home","Add Product"," Add Production","Add Sales","Inventory")
 choice = st.sidebar.selectbox("Navigation",menu)
 #---------------------- Page Title ---------------
