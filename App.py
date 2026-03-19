@@ -153,13 +153,22 @@ elif choice == "Add Production":
         production_date = st.date_input("Production Date")
         quantity = st.number_input("Production Quantity", min_value=1)
 
+        st.write("Selected Product ID:", product_id)
+        st.write("Production Date:", production_date)
+        st.write("Quantity:", quantity)
+
         if st.button("Save Production"):
-            cursor.execute(
-                "INSERT INTO production (product_id, production_date, quantity) VALUES (%s, %s, %s)",
-                (product_id, production_date, quantity)
-            )
-            conn.commit()
-            st.success("Production data saved successfully!")
+            try:
+                cursor.execute(
+                    "INSERT INTO production (product_id, production_date, quantity) VALUES (%s, %s, %s)",
+                    (int(product_id), production_date, int(quantity))
+                )
+                conn.commit()
+                st.success("Production data saved successfully!")
+                time.sleep(2)
+                st.rerun()
+            except Exception as e:
+                st.error(f"Production insert error: {e}")
     else:
         st.warning("Please add products first.")
         time.sleep(2)
