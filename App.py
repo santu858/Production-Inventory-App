@@ -203,7 +203,7 @@ elif choice == " Add Production":
             st.rerun()
 
 # ---------------- SALES ENTRY ----------------
-elif choice == "Sales Entry":
+elif choice == "Add gitSales":
     st.header("Enter Sales Data")
     
     cursor.execute("select product_id,product_name from products")
