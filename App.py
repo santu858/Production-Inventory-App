@@ -138,7 +138,7 @@ elif choice == "Add Product":
        
     
 # ---------------- PRODUCTION ENTRY ----------------
-elif choice == " Add Production":
+elif choice == "Add Production":
     st.header("Enter Production Data")
 
     cursor.execute("SELECT product_id, product_name FROM products")
@@ -170,7 +170,7 @@ elif choice == " Add Production":
     st.subheader("Production Data")
     cursor.execute("select product_id, production_date, quantity from production")
     production_record = cursor.fetchall()
-    if product_data:
+    if production_record:
         df= pd.DataFrame(production_record, columns=["product_id", "production_date", "quantity"])
         st.dataframe(df)
 
@@ -191,9 +191,9 @@ elif choice == " Add Production":
    
 #---------------- Delete Production Data -----------
     st.subheader("Delete Production Data")
-    delete_id = st.number_input("Enter Delete Production Id ",min_value=0)
+    delete_id = st.number_input("Enter Delete Production_Id ",min_value=0)
     if st.button("Delete Production Data"):
-        cursor.execute("delete from production where production Id = %s",(delete_id,))
+        cursor.execute("delete from production where production_Id = %s",(delete_id,))
         conn.commit()
         if cursor.rowcount == 0:
             st.warning("No Data Found With This Id")
@@ -203,7 +203,7 @@ elif choice == " Add Production":
             st.rerun()
 
 # ---------------- SALES ENTRY ----------------
-elif choice == "Add gitSales":
+elif choice == "Add Sales":
     st.header("Enter Sales Data")
     
     cursor.execute("select product_id,product_name from products")
